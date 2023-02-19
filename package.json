@@ -1,0 +1,92 @@
+{
+  "name": "electron-app",
+  "version": "1.0.0",
+  "description": "Desktop app to capture work-diary",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "release": "electron-builder -p always"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hardik1805/electron-app.git",
+    "token": "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"
+  },
+  "author": "Hardik Gangajaliya",
+  "GH_TOKEN": "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",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hardik1805/electron-app/issues"
+  },
+  "homepage": "https://github.com/hardik1805/electron-app#readme",
+  "devDependencies": {
+    "electron": "^23.1.0",
+    "electron-builder": "^23.6.0"
+  },
+  "build": {
+    "appId": "com.example.electron",
+    "directories": {
+      "buildResources": "resources",
+      "output": "release"
+    },
+    "files": [
+      "**/*",
+      "*.js",
+      "resources"
+    ],
+    "mac": {
+      "category": "org.workdiary",
+      "target": [
+        "dmg"
+      ],
+      "publish": {
+        "provider": "github",
+        "owner": "Hardik Gangajaliya",
+        "releaseType": "prerelease",
+        "publishAutoUpdate": true
+
+      }
+    },
+    "dmg": {
+      "sign": false,
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "resources/icon.ico",
+      "verifyUpdateCodeSignature": false,
+      "publisherName": "Ultimate Business Systems Pvt. Ltd.",
+      "signingHashAlgorithms": [
+        "sha256"
+      ],
+      "publish": {
+        "provider": "s3",
+        "bucket": "ubs-desktop-app",
+        "region": "ap-south-1",
+        "storageClass": "STANDARD",
+        "endpoint": "https://ubs-desktop-app.s3.ap-south-1.amazonaws.com",
+        "path": "/win-32"
+      }
+    },
+    "linux": {
+      "icon": "resources/icon.png",
+      "synopsis": "UBS Desktop app",
+      "description": "Desktop App for UBS",
+      "category": "Network;Chat"
+    },
+    "snap": {
+      "autoStart": true
+    }
+  }
+}
